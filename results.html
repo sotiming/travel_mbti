@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T2XWRGV4');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="나소스" />
+  <meta property="og:title" content="나의 여행 소비 스타일 찾기!" />
+  <meta property="og:description" content="나의 여행 소비 스타일을 찾아보세요!" />
+  <meta property="og:image" content="/images/thumbnail_2.jpg" />
+  <meta property="og:url" content="https://so-travel-mbti.netlify.app" />
+
+  <!-- Twitter Cards -->
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:site" content="나소스" />
+  <meta property="twitter:title" content="나의 여행 소비 스타일 찾기!" />
+  <meta property="twitter:description" content="나의 여행 소비 스타일을 찾아보세요!" />
+  <meta property="twitter:image" content="/images/thumbnail_2.jpg" />
+  <meta property="twitter:url" content="https://so-travel-mbti.netlify.app" />
+
+  <title>나의 여행 소비 스타일 찾기!</title>
+  <link rel="icon" href="soso.PNG">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/results.css">
+  <script defer src="./js/share.js"></script>
+  <script type="module" defer src="./js/results.js"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+  integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh" crossorigin="anonymous"></script>
+  <script>
+    Kakao.init('ec5e058c70094d1f3f596c71bfe52cde'); // 사용하려는 앱의 JavaScript 키 입력
+  </script>
+
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2XWRGV4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) --> 
+
+  <h2 class="page-subtitle">
+   여행 소비 스타일
+  </h2>
+  <h1 class="page-title"></h1>
+  <img src="" alt="캐릭터" class="character">
+  <div class="result">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <div class="result">
+    <h3>나에게 맞는 추천 여행지</h3>
+    <div class="jobs">
+      <div class="job"></div>
+      <div class="job"></div>
+      </div>
+    </div>
+    <a id="kakaotalk-sharing-btn" href="javascript:;" class="btn btn-yellow btn-small">
+      테스트 공유하기
+      <script>
+        Kakao.Share.createDefaultButton({
+          container: '#kakaotalk-sharing-btn',
+          objectType: 'feed',
+          content: {
+            title: '여행 소비 유형 테스트',
+            description: '#여행 #소비 #mbti #테스트',
+            imageUrl:
+              'https://so-travel-mbti.netlify.app/images/thumbnail_2.jpg',
+            link: {
+              // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+              mobileWebUrl: 'https://so-travel-mbti.netlify.app/',
+              webUrl: 'https://so-travel-mbti.netlify.app/',
+            },
+          },
+          social: {
+            likeCount: 286,
+            commentCount: 45,
+            sharedCount: 845,
+          },
+          buttons: [
+            {
+              title: '웹으로 보기',
+              link: {
+                mobileWebUrl: 'https://so-travel-mbti.netlify.app/',
+                webUrl: 'https://so-travel-mbti.netlify.app/',
+              },
+            },
+            {
+              title: '앱으로 보기',
+              link: {
+                mobileWebUrl: 'https://developers.kakao.com',
+                webUrl: 'https://developers.kakao.com',
+              },
+            },
+          ],
+        });
+      </script>
+      </a>
+  </div>
+  <div class="btn btn-green btn-small share-or-copy">
+    결과 공유하기
+  </div>
+  <a href="/index.html" class="btn btn-gray btn-small">
+    다시 테스트하기
+  </a>
+</body>
+</html>
