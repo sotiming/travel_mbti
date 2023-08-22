@@ -1,0 +1,7 @@
+SELECT COUNT (CASE WHEN event_name = 'result_1' THEN user_pseudo_id END) AS result_1
+      ,COUNT (CASE WHEN event_name = 'result_2' THEN user_pseudo_id END) AS result_2
+      ,COUNT (CASE WHEN event_name = 'result_3' THEN user_pseudo_id END) AS result_3
+      ,COUNT (CASE WHEN event_name = 'result_4' THEN user_pseudo_id END) AS result_4
+      ,COUNT (CASE WHEN event_name = 'result_5' THEN user_pseudo_id END) AS result_5
+      ,COUNT (CASE WHEN event_name = 'result_6' THEN user_pseudo_id END) AS result_6
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
