@@ -1,0 +1,35 @@
+WITH start AS (
+SELECT user_pseudo_id
+       ,dt AS start_at
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('start_bnt')
+), result AS (
+SELECT user_pseudo_id
+       ,dt AS result_at
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('result_1', 'result_2', 'result_3', 'result_4', 'result_5', 'result_6')
+), scroll AS (
+SELECT user_pseudo_id
+       ,dt AS scroll_at
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('90 % Scroll')
+), test_share AS (
+SELECT user_pseudo_id
+       ,dt AS test_share_at
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('kakao_share_bnt','result_share_bnt') 
+)
+
+SELECT COUNT(DISTINCT s.user_pseudo_id) AS start_click
+      ,COUNT(DISTINCT r.user_pseudo_id) AS result_view
+      ,COUNT(DISTINCT sc.user_pseudo_id) AS result_scroll
+      ,COUNT(DISTINCT t.user_pseudo_id) AS test_share
+      ,ROUND(COUNT(DISTINCT r.user_pseudo_id) / COUNT(DISTINCT s.user_pseudo_id)*100,0) AS test_rate
+      ,ROUND(COUNT(DISTINCT sc.user_pseudo_id) / COUNT(DISTINCT r.user_pseudo_id)*100,0) AS result_scroll_rate
+      ,ROUND(COUNT(DISTINCT t.user_pseudo_id) / COUNT(DISTINCT sc.user_pseudo_id)*100,0) AS test_share_rate
+FROM start s LEFT JOIN result r ON s.user_pseudo_id = r.user_pseudo_id
+                                AND start_at <= result_at
+             LEFT JOIN scroll sc ON r.user_pseudo_id = sc.user_pseudo_id
+                                 AND result_at <= scroll_at
+             LEFT JOIN test_share t ON sc.user_pseudo_id = t.user_pseudo_id
+                                     AND scroll_at <= test_share_at
