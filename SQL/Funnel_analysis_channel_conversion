@@ -1,0 +1,57 @@
+WITH start AS (
+SELECT user_pseudo_id
+       ,dt AS start_at
+       ,source
+       ,medium
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('start_bnt')
+), question AS (
+SELECT user_pseudo_id
+       ,dt AS question_at
+       ,source
+       ,medium
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('Q1-1','Q1-2')
+), result AS (
+SELECT user_pseudo_id
+       ,dt AS result_at
+       ,source
+       ,medium
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('result_1', 'result_2', 'result_3', 'result_4', 'result_5', 'result_6')
+), scroll AS (
+SELECT user_pseudo_id
+       ,dt AS scroll_at
+       ,source
+       ,medium
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('90 % Scroll')
+), test_share AS (
+SELECT user_pseudo_id
+       ,dt AS test_share_at
+       ,source
+       ,medium
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
+WHERE event_name IN ('kakao_share_bnt', 'result_share_bnt') 
+)
+
+
+
+SELECT s.source
+      ,s.medium 
+      ,COUNT(DISTINCT s.user_pseudo_id) AS start_click
+      ,COUNT(DISTINCT r.user_pseudo_id) AS result_view
+      ,COUNT(DISTINCT sc.user_pseudo_id) AS result_scroll
+      ,COUNT(DISTINCT ts.user_pseudo_id) AS test_share_click
+      ,ROUND(COUNT(DISTINCT r.user_pseudo_id) / COUNT(DISTINCT s.user_pseudo_id)*100,0) AS result_view_rate
+      ,ROUND(COUNT(DISTINCT sc.user_pseudo_id) / COUNT(DISTINCT r.user_pseudo_id)*100,0) AS result_scroll_rate
+      ,ROUND(COUNT(DISTINCT ts.user_pseudo_id) / COUNT(DISTINCT sc.user_pseudo_id)*100,0) AS tset_share_rate
+FROM start s LEFT JOIN question q ON s.user_pseudo_id = q.user_pseudo_id
+                                  AND start_at <= question_at
+             LEFT JOIN result r ON q.user_pseudo_id = r.user_pseudo_id
+                                AND question_at <= result_at
+             LEFT JOIN scroll sc ON r.user_pseudo_id = sc.user_pseudo_id
+                                 AND result_at <= scroll_at
+             LEFT JOIN test_share ts ON sc.user_pseudo_id = ts.user_pseudo_id
+                                     AND scroll_at <= test_share_at
+GROUP BY 1,2
