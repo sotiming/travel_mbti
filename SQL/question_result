@@ -1,0 +1,13 @@
+SELECT COUNT (CASE WHEN event_name = 'Q5-1' THEN user_pseudo_id END) as Q5A -- Q5.국내여행
+      ,COUNT (CASE WHEN event_name = 'Q5-2' THEN user_pseudo_id END) as Q5B -- Q5.해외여행
+      ,COUNT (CASE WHEN event_name = 'Q6-1' THEN user_pseudo_id END) as Q6A -- Q6.50만원 ~ 100만원
+      ,COUNT (CASE WHEN event_name = 'Q6-2' THEN user_pseudo_id END) as Q6B -- Q6.200만원 이상
+      ,COUNT (CASE WHEN event_name = 'Q7-1' THEN user_pseudo_id END) as Q7A -- Q7.게스트하우스, 캠핑장 
+      ,COUNT (CASE WHEN event_name = 'Q7-2' THEN user_pseudo_id END) as Q7B -- Q7.호텔, 단독펜션
+      ,COUNT (CASE WHEN event_name = 'Q8-1' THEN user_pseudo_id END) as Q8A -- Q8.이동수단, 숙소 퀄리티
+      ,COUNT (CASE WHEN event_name = 'Q8-2' THEN user_pseudo_id END) as Q8B -- Q8.맛집, 놀거리 퀄리티
+      ,COUNT (CASE WHEN event_name = 'Q9-1' THEN user_pseudo_id END) as Q9A -- Q9.현장 예매
+      ,COUNT (CASE WHEN event_name = 'Q9-2' THEN user_pseudo_id END) as Q9B -- Q9.온라인 예매
+      ,COUNT (CASE WHEN event_name = 'Q10-1' THEN user_pseudo_id END) as Q10A -- Q10.SNS
+      ,COUNT (CASE WHEN event_name = 'Q10-2' THEN user_pseudo_id END) as Q10B -- Q10.여행어플
+FROM `trevel-mbti.travel_mbti_log_data.travel_mbti_log_data_0804_수정`
